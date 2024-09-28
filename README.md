@@ -1,2 +1,5 @@
 # image-upload-service
-Node typescript test
+- Project description.
+- Setup instructions.
+- How to run and test the application.
+- Any other relevant information.

@@ -1,0 +1,12 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "1234",
+    "database": "node_ts_test",
+    "entities": [
+        "src/entities/**/*.ts"
+    ],
+    "synchronize": true
+}
