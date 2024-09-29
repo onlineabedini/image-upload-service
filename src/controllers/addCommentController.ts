@@ -1,25 +1,24 @@
-// @collapse
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { Image } from '../entities/Image';
 import { Comment } from '../entities/Comment';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-// Add Comment
 export const addComment = async (req: Request, res: Response): Promise<void> => {
   try {
-    const imageId: number = parseInt(req.params.imageId, 10); 
-    const { commentText } = req.body;
+    const imageId = Number(req.params.imageId);
+    const commentText: string = req.body.commentText;
 
     if (isNaN(imageId)) {
       res.status(400).json({ message: 'Invalid image ID' });
       return;
     }
 
-    const imageRepository = getRepository(Image);
+    if (!commentText) {
+      res.status(400).json({ message: 'Comment text is required' });
+      return;
+    }
 
+    const imageRepository = getRepository(Image);
     const image = await imageRepository.findOne({ where: { id: imageId } });
 
     if (!image) {
