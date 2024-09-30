@@ -3,6 +3,7 @@
 ## Project description
 This project is a backend service developed with TypeScript, Express, and TypeORM that enables users to upload images, which are then stored in AWS S3. An asynchronous worker listens to an AWS SQS queue to process these images by generating thumbnails using Sharp. The thumbnails are uploaded back to S3, and the image metadata in the database is updated accordingly. Upon successful processing, the service sends email notifications via AWS SES to configured recipients. Additionally, the application allows users to add comments to images. By leveraging AWS services like S3 for storage, SQS for messaging, and SES for email notifications, the project ensures efficient, scalable, and robust handling of image uploads, processing, storage, and user interactions.
 
+<br>
 
 ## Setup instructions
 Prerequisites
@@ -144,6 +145,36 @@ Check your S3 bucket to see if the images and thumbnails are uploaded.
 Monitor your SQS queue to ensure messages are being processed.
 Verify that email notifications are sent via AWS SES.
 
+<br>
+<br>
+
+## Docker Setup
+If you prefer to run the project inside Docker, follow the steps below:
+
+1. Build and Start Services
+Docker Compose will automatically build and run both the app and a PostgreSQL database.
+
+```
+docker-compose up --build
+```
+
+This will:
+Build the Node.js application image.
+Set up a PostgreSQL database container.
+2. Set Up Environment Variables
+Ensure your .env file is properly configured with AWS and database details. Docker Compose will read these variables from the .env file.
+
+3. Interact with the Application
+The app will be accessible at http://localhost:3000.
+The PostgreSQL database will be available at localhost:5432 inside the container.
+4. Stop Services
+To stop and remove containers, use:
+
+```
+docker-compose down
+```
+<br>
+<br>
 
 ## How to run and test the application
 10. Test the Application
